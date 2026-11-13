@@ -7,3 +7,6 @@ process.env.BCRYPT_COST = '10';
 process.env.LOGIN_MAX_FAILS = '5';
 process.env.LOGIN_WINDOW_MIN = '15';
 process.env.SENDGRID_API_KEY = '';
+process.env.CLOUDINARY_CLOUD_NAME = 'test-cloud';
+process.env.CLOUDINARY_API_KEY = '123456';
+process.env.CLOUDINARY_API_SECRET = 'test-secret';

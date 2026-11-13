@@ -2,10 +2,7 @@ import { env } from '../config/env.js';
 import { logger } from '../utils/logger.js';
 
 const esc = (s) =>
-  String(s).replace(
-    /[&<>"']/g,
-    (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c],
-  );
+  String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 
 function parseFrom(value) {
   const m = value.match(/^(.*)<(.+)>$/);
@@ -25,10 +22,7 @@ export async function sendEmail({ to, subject, html }) {
   try {
     const res = await fetch('https://api.sendgrid.com/v3/mail/send', {
       method: 'POST',
-      headers: {
-        Authorization: `Bearer ${env.SENDGRID_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
+      headers: { Authorization: `Bearer ${env.SENDGRID_API_KEY}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
         personalizations: [{ to: [{ email: to }] }],
         from: parseFrom(env.MAIL_FROM),

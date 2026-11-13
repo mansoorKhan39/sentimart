@@ -36,10 +36,7 @@ export async function logout(req, res) {
 
 export async function forgotPassword(req, res) {
   await authService.forgotPassword(req.body.email);
-  res.json({
-    success: true,
-    data: { message: 'If that email exists, a reset link has been sent.' },
-  });
+  res.json({ success: true, data: { message: 'If that email exists, a reset link has been sent.' } });
 }
 
 export async function resetPassword(req, res) {

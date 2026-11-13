@@ -10,14 +10,7 @@ const addressSchema = new mongoose.Schema({
 const userSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, trim: true, minlength: 2, maxlength: 80 },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-      lowercase: true,
-      trim: true,
-      maxlength: 254,
-    },
+    email: { type: String, required: true, unique: true, lowercase: true, trim: true, maxlength: 254 },
     passwordHash: { type: String, required: true, select: false },
     role: { type: String, enum: ['customer', 'seller', 'admin'], default: 'customer' },
     status: { type: String, enum: ['active', 'suspended'], default: 'active' },
@@ -48,10 +41,7 @@ userSchema.methods.toPublic = function toPublic() {
     role: this.role,
     status: this.status,
     ...(this.role === 'seller' && {
-      seller: {
-        businessName: this.seller?.businessName,
-        approvalStatus: this.seller?.approvalStatus,
-      },
+      seller: { businessName: this.seller?.businessName, approvalStatus: this.seller?.approvalStatus },
     }),
     addresses: this.addresses,
     createdAt: this.createdAt,

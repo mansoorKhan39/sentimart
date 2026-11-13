@@ -1,7 +1,9 @@
 import request from 'supertest';
 import mongoose from 'mongoose';
 
-
+// Slow internet? Set TEST_MONGODB_URI to an Atlas URI ending in /sentimart_test and the
+// in-memory MongoDB binary (hundreds of MB) is never downloaded. Atlas is a replica set,
+// so transactions work there too. The test database is wiped before every test.
 const TEST_URI = process.env.TEST_MONGODB_URI;
 
 let mongod;

@@ -7,10 +7,7 @@ function redact(value, depth = 0) {
   if (value === null || typeof value !== 'object' || depth > 3) return value;
   if (Array.isArray(value)) return value.map((v) => redact(v, depth + 1));
   return Object.fromEntries(
-    Object.entries(value).map(([k, v]) => [
-      k,
-      SENSITIVE.test(k) ? '[redacted]' : redact(v, depth + 1),
-    ]),
+    Object.entries(value).map(([k, v]) => [k, SENSITIVE.test(k) ? '[redacted]' : redact(v, depth + 1)]),
   );
 }
 

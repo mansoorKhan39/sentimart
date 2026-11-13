@@ -17,6 +17,9 @@ const schema = z.object({
   LOGIN_WINDOW_MIN: z.coerce.number().int().min(1).default(15),
   SENDGRID_API_KEY: z.string().optional().default(''),
   MAIL_FROM: z.string().default('SentiMart <no-reply@example.com>'),
+  CLOUDINARY_CLOUD_NAME: z.string().optional().default(''),
+  CLOUDINARY_API_KEY: z.string().optional().default(''),
+  CLOUDINARY_API_SECRET: z.string().optional().default(''),
 });
 
 const parsed = schema.safeParse(process.env);
