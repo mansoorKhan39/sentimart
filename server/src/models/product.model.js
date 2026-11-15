@@ -27,6 +27,8 @@ const productSchema = new Schema(
       },
     },
     status: { type: String, enum: ['active', 'hidden'], default: 'active' },
+    // why a product is hidden, so it can be restored automatically (e.g. seller re-approved)
+    hiddenReason: { type: String, enum: ['admin', 'seller_rejected', 'seller_suspended'] },
     // maintained by the reviews module
     avgRating: { type: Number, default: 0, min: 0, max: 5 },
     reviewCount: { type: Number, default: 0, min: 0 },
