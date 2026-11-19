@@ -1,10 +1,31 @@
 import { Router } from 'express';
 import authRoutes from './auth.routes.js';
 import userRoutes from './user.routes.js';
+import categoryRoutes from './category.routes.js';
+import productRoutes from './product.routes.js';
+import cartRoutes from './cart.routes.js';
+import wishlistRoutes from './wishlist.routes.js';
+import orderRoutes from './order.routes.js';
+import subOrderRoutes from './subOrder.routes.js';
+import sellerRoutes from './seller.routes.js';
+import productReviewRoutes from './productReview.routes.js';
+import reviewRoutes from './review.routes.js';
+import internalRoutes from './internal.routes.js';
+import adminRoutes from './admin.routes.js';
 
 const router = Router();
 router.use('/auth', authRoutes);
 router.use('/users', userRoutes);
-// Later modules mount here: /products, /cart, /orders, /reviews, /seller, /admin
+router.use('/categories', categoryRoutes);
+router.use('/products/:id/reviews', productReviewRoutes);
+router.use('/products', productRoutes);
+router.use('/cart', cartRoutes);
+router.use('/wishlist', wishlistRoutes);
+router.use('/orders', orderRoutes);
+router.use('/sub-orders', subOrderRoutes);
+router.use('/seller', sellerRoutes);
+router.use('/reviews', reviewRoutes);
+router.use('/internal', internalRoutes);
+router.use('/admin', adminRoutes);
 
 export default router;

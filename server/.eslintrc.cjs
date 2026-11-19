@@ -1,6 +1,7 @@
 module.exports = {
   root: true,
   env: { node: true, es2022: true, jest: true },
+  globals: { fetch: 'readonly', FormData: 'readonly', Blob: 'readonly', AbortSignal: 'readonly' },
   parserOptions: { sourceType: 'module', ecmaVersion: 2022 },
   extends: ['eslint:recommended', 'prettier'],
   rules: {

@@ -29,6 +29,13 @@ export function errorHandler(err, req, res, _next) {
     status = 401;
     code = 'INVALID_TOKEN';
     message = 'Invalid or expired token';
+  } else if (err?.name === 'MulterError') {
+    const tooBig = err.code === 'LIMIT_FILE_SIZE';
+    status = tooBig ? 413 : 422;
+    code = tooBig ? 'FILE_TOO_LARGE' : 'UPLOAD_ERROR';
+    message = tooBig
+      ? 'Each image must be 2 MB or smaller'
+      : 'Upload at most 2 images per request, in the field "images"';
   } else if (err?.type === 'entity.too.large') {
     status = 413;
     code = 'PAYLOAD_TOO_LARGE';
@@ -47,7 +54,5 @@ export function errorHandler(err, req, res, _next) {
     });
   }
 
-  res
-    .status(status)
-    .json({ success: false, error: { code, message, ...(details && { details }) } });
+  res.status(status).json({ success: false, error: { code, message, ...(details && { details }) } });
 }
